@@ -8,5 +8,4 @@ class BasePage:
         self.driver.get(self.PAGE_URL)
 
     def is_opened(self):
-        # WaitUntil.IsPageOpened(self.driver, timeout, url)
-        pass
+        WaitUntil.IsPageOpened(self.driver, 10, self.PAGE_URL)
