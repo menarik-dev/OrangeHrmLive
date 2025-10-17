@@ -4,11 +4,20 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class WaitUntil():
     @staticmethod
-    def WaitPageLoaded(webdriver, timeInSeconds):
-        if (timeInSeconds > 0):
-            (WebDriverWait(webdriver, timeInSeconds)
+    def WaitPageLoaded(webdriver, timeOutInSeconds):
+        if (timeOutInSeconds > 0):
+            (WebDriverWait(webdriver, timeOutInSeconds)
              .until(lambda driver: driver.execute_script("return document.readyState === 'complete'"))
              )
+
+    @staticmethod
+    def IsPageOpened(webdriver, timeOutInSeconds, url):
+        try:
+            WebDriverWait(webdriver, timeOutInSeconds).until(EC.url_to_be(url))
+            return True
+        except Exception as _ex:
+            print(_ex)
+            return False
 
     @staticmethod
     def WaitElementVisible(webdriver, locator, timeOutInSeconds):
