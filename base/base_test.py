@@ -1,7 +1,7 @@
 from pages.login_page import LoginPage
 from pages.dashboard_page import DashBoardPage
 from pages.profile_page import PersonalPage
-from utils.data import Data
+from utils.Data import Data
 
 class BaseTest:
     data: Data
