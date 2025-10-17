@@ -1,3 +1,6 @@
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from base.base_page import BasePage
 from utils.Links import Links
 from selenium.webdriver import Keys
@@ -15,7 +18,7 @@ class PersonalPage(BasePage):
     SPINNER = ("xpath", "//div[@class='oxd-loading-spinner']")
 
     def change_name(self, new_name):
-        first_name_field = WaitUntil.WaitElementClickable(self.driver, self.FIRST_NAME_FIELD, 10)
+        first_name_field = WaitUntil.WaitElementClickable(self.driver, self.FIRST_NAME_FIELD, 15)
         first_name_field.clear()
         first_name_field.send_keys(Keys.COMMAND + "A")
         first_name_field.send_keys(new_name)
@@ -25,4 +28,5 @@ class PersonalPage(BasePage):
         return WaitUntil.ClickElement(self.driver, self.SAVE_BUTTON, 10)
 
     def is_changes_saved(self):
-        pass
+        WebDriverWait(self.driver, 15).until(EC.invisibility_of_element_located(self.SPINNER))
+        WaitUntil.WaitPresentTextInElementValue(self.driver, self.FIRST_NAME_FIELD, self.new_name, 15)
