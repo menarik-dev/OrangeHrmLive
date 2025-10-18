@@ -1,7 +1,4 @@
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from base.base_page import BasePage
 from utils.Links import Links
 from selenium.webdriver import Keys
@@ -31,5 +28,5 @@ class PersonalPage(BasePage):
 
     @allure.step("Check if changes saved")
     def is_changes_saved(self):
-        WebDriverWait(self.driver, 15).until(EC.invisibility_of_element_located(self.SPINNER))
+        WaitUntil.WaitElementInvisibilityLocated(self.driver, self.SPINNER, 15)
         WaitUntil.WaitPresentTextInElementValue(self.driver, self.FIRST_NAME_FIELD, self.new_name, 15)

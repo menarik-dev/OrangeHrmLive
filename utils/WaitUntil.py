@@ -32,6 +32,10 @@ class WaitUntil():
         WebDriverWait(webdriver, timeOutInSeconds).until(EC.text_to_be_present_in_element_value(locator, text))
 
     @staticmethod
+    def WaitElementInvisibilityLocated(webdriver, locator, timeOutInSeconds):
+        WebDriverWait(webdriver, timeOutInSeconds).until(EC.invisibility_of_element_located(locator))
+
+    @staticmethod
     def InputText(webdriver, locator, text, timeOutInSeconds=10):
         element = WaitUntil.WaitElementVisible(webdriver, locator, timeOutInSeconds)
         element.clear()
