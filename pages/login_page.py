@@ -1,6 +1,7 @@
 from base.base_page import BasePage
 from utils.WaitUntil import WaitUntil
 from utils.Links import Links
+import allure
 
 class LoginPage(BasePage):
     PAGE_URL = Links.LOGIN_PAGE
@@ -12,6 +13,7 @@ class LoginPage(BasePage):
     # ERROR_MESSAGE = ("xpath", "//div[@role='alert']")
     # EXPECTED_ERROR_MESSAGE = "Invalid credentials"
 
+    @allure.step("Log in to site")
     def Login(self, login, password):
         WaitUntil.InputText(self.driver, self.USERNAME_FIELD, login, 10  )
         WaitUntil.InputText(self.driver, self.PASSWORD_FIELD, password, 10  )
