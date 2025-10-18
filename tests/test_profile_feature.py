@@ -1,6 +1,12 @@
 from base.base_test import BaseTest
+import allure
+import pytest
 
+@allure.feature("Profile functionality")
 class TestProfileFeature(BaseTest):
+    @allure.title("Change profile name")
+    @allure.severity("Critical")
+    @pytest.mark.smoke
     def test_change_name(self, driver):
         self.login_page.open()
         self.login_page.Login(login=self.data.LOGIN, password=self.data.PASSWORD)
